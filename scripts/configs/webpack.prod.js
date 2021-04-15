@@ -4,10 +4,9 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const common = require('./webpack.common.js');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const { shouldOpenAnalyzer, ANALYZER_HOST, ANALYZER_PORT } = require('../conf');
+const { shouldOpenAnalyzer, ANALYZER_HOST, ANALYZER_PORT } = require('../consts');
 
 module.exports = merge(common, {
-  mode: 'production',
   devtool: false,
   target: 'browserslist',
   plugins: [
@@ -28,7 +27,11 @@ module.exports = merge(common, {
       new TerserPlugin({
         extractComments: false,
         terserOptions: {
-          compress: { pure_funcs: ['console.log'] },
+          compress: { 
+            pure_funcs: ['console.log'],
+            drop_console: true,
+						drop_debugger: true,
+          },
         },
       }),
       new CssMinimizerPlugin(),

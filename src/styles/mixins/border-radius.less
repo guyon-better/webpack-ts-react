@@ -1,0 +1,12 @@
+.border-radius(@topleft: 0, @topright: 0, @bottomright: 0, @bottomleft: 0) {
+  border-top-left-radius: @topleft;
+  border-top-right-radius: @topright;
+  border-bottom-right-radius: @bottomright;
+  border-bottom-left-radius: @bottomleft;
+  background-clip: padding-box;
+}
+
+.radius-rounded(@radius: 3px) {
+  border-radius: @radius;
+  background-clip: padding-box;
+}

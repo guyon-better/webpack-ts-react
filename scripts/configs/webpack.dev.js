@@ -2,9 +2,9 @@ const Webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
-const { SERVER_HOST, SERVER_PORT } = require('../conf.js');
+const { SERVER_HOST, SERVER_PORT } = require('../consts');
 const paths = require('../paths');
-const proxySetting = require('../config/utils/setProxy');
+const proxySetting = require('../utils/setProxy');
 
 module.exports = merge(common, {
   mode: 'development',

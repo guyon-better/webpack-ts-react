@@ -1,0 +1,167 @@
+.ant-table-thead > tr > th, .ant-table-tbody > tr > td{
+	padding: 8px!important;
+}
+.ant-table-tbody > tr > td{
+	word-break: break-all;
+}
+
+
+//修复 Table（展示分页） 组件在 Form 中的时候，分页部分样式有误
+.ant-table+.ant-pagination>.ant-pagination-options>.ant-pagination-options-size-changer{
+	width: auto;
+}
+
+.ant-table-small {
+	border: none!important;
+}
+
+.ant-table-empty > .ant-table-content {
+	// overflow-x: initial;
+	overflow: initial;
+	>.ant-table-scroll{
+		overflow: initial;
+		>.ant-table-header{
+			overflow: auto;
+			margin-bottom: 0!important;
+		}
+	}
+
+}
+
+// .ant-table-small > .ant-table-content > .ant-table-scroll > .ant-table-body > table > .ant-table-thead > tr > th,
+// .ant-table-small > .ant-table-content > .ant-table-fixed-right > .ant-table-body-outer > .ant-table-body-inner > table > .ant-table-thead > tr > th  {
+// 	background: #fafafa!important;
+// }
+
+.ant-table-thead > tr > th .ant-table-header-column {
+	display: block;
+	width: auto;
+	>.ant-table-column-sorters{
+		width: 100%;
+	}
+}
+
+.ant-table-thead tr > th{
+	background: #fafafa!important;
+}
+
+.ant-btn>a{
+	color: inherit;
+}
+
+.ant-btn-group > span  .ant-btn{
+	position: relative;
+    line-height: 30px;
+}
+
+.ant-menu-dark, .ant-menu-dark .ant-menu-sub {
+	color: #fff!important;
+}
+
+.ant-menu-dark .ant-menu-item,  .ant-menu-dark .ant-menu-item > a {
+	color: #fff!important;
+}
+
+.ant-menu-dark .ant-menu-item:hover,
+.ant-menu-dark .ant-menu-item-active,
+.ant-menu-dark .ant-menu-submenu-active,
+.ant-menu-dark .ant-menu-submenu-open,
+.ant-menu-dark .ant-menu-submenu-selected,
+.ant-menu-dark .ant-menu-submenu-title:hover {
+	color: #1890ff!important;
+}
+.ant-menu-dark .ant-menu-item:hover > a,
+.ant-menu-dark .ant-menu-item-active > a,
+.ant-menu-dark .ant-menu-submenu-active > a,
+.ant-menu-dark .ant-menu-submenu-open > a,
+.ant-menu-dark .ant-menu-submenu-selected > a,
+.ant-menu-dark .ant-menu-submenu-title:hover > a {
+	color: #1890ff!important;
+}
+
+.ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-tab .anticon-close {
+	position: absolute;
+	top: 1px;
+	right: 1px;
+	margin: 0 !important;
+}
+
+.ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-tab {
+	padding-right: 18px!important;
+}
+
+
+.ant-form-item{
+	margin-bottom: 8px!important;
+}
+
+.ant-divider-horizontal{
+	margin: 8px 0!important;
+}
+
+.ant-table-footer,.ant-table-placeholder {
+	padding: 8px 16px!important;
+}
+
+.ant-card-body{
+	padding: @space;
+}
+
+.ant-layout {
+	overflow-x: hidden;
+}
+
+.ant-layout-footer{
+	padding: 12px 0;
+}
+
+// .ant-modal-close-x{
+// 	height: 39px;
+//     line-height: 39px;
+// }
+
+// .ant-modal-header{
+// 	padding: 10px 24px;
+// }
+
+// .ant-modal-body{
+// 	padding: 12px 24px;
+// }
+
+td .ant-select {
+	width: 100%;
+	.ant-select-selection-selected-value{
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+}
+
+th .ant-select .ant-select-selection-selected-value{
+		position: absolute;
+		left: 0;
+		top: 0;
+}
+
+
+.ant-table-thead > tr > th.ant-table-column-has-actions.ant-table-column-has-sorters{
+	position: relative;
+	padding-right: 14px!important;
+	.ant-table-column-sorter{
+		position: absolute;
+        right: 0px;
+        top: 50%;
+		transform: translateY(-50%);
+		margin-top: 0;
+	}
+}
+
+td.ant-table-selection-column,th.ant-table-selection-column {
+	width: 60px;
+}
+
+
+
+.ant-table-scroll table .ant-table-fixed-columns-in-body {
+	visibility: visible;
+}

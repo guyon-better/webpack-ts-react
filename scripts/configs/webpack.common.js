@@ -1,22 +1,24 @@
 const path = require('path');
-const { PROJECT_PATH } = require('../const');
+const { PROJECT_PATH } = require('../consts');
 const { isDev, isProd } = require('../env');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { getCssLoaders } = require('./utils');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { getCssLoaders } = require('../utils');
 const CopyPlugin = require('copy-webpack-plugin');
 const WebpackBar = require('webpackbar');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 module.exports = {
+  mode: isDev ? 'development': 'production',
   entry: {
-    app: path.resolve(PROJECT_PATH, './src/index.tsx'),
+    app: path.resolve(PROJECT_PATH, './src/entries/login'),
   },
   output: {
     filename: `js/[name]${isDev ? '' : '.[contenthash:8]'}.js`,
     path: path.resolve(PROJECT_PATH, './dist'),
-    // clean: true,
+    publicPath : isProd ? '/bundles/' : undefined,
+    clean: isProd,
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.json'],
@@ -27,14 +29,16 @@ module.exports = {
     },
   },
   externals: {
-    react: 'React',
+    'react': 'React',
     'react-dom': 'ReactDOM',
-    axios: 'axios',
+    'axios': 'axios',
+    'antd' : 'antd',
   },
   module: {
     rules: [
       {
         test: /\.(tsx?|js)$/,
+        include: path.resolve(PROJECT_PATH, './src'),
         loader: 'babel-loader',
         options: { cacheDirectory: true },
         exclude: /node_modules/,
@@ -44,7 +48,22 @@ module.exports = {
         use: getCssLoaders(1),
       },
       {
+        test: /\.module\.less$/,
+        include: path.resolve(PROJECT_PATH, './src'),
+        use: [
+          ...getCssLoaders(2, { esModule: false, modules: true }),
+          {
+            loader: 'less-loader',
+            options: {
+              sourceMap: isDev,
+            },
+          },
+        ],
+      },
+      {
         test: /\.less$/,
+        exclude: /\.module\.less$/,
+        include: path.resolve(PROJECT_PATH, './src'),
         use: [
           ...getCssLoaders(2),
           {
@@ -57,6 +76,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
+        include: path.resolve(PROJECT_PATH, './src'),
         use: [
           ...getCssLoaders(2),
           {
@@ -95,26 +115,28 @@ module.exports = {
     ],
   },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[contenthash:8].css',
+      chunkFilename: 'css/[name].[contenthash:8].chunk.css',
+    }),
     new HtmlWebpackPlugin({
       template: path.resolve(PROJECT_PATH, './public/dev.html'),
       filename: 'index.html',
       cache: false, // 特别重要：防止之后使用v6版本 copy-webpack-plugin 时代码修改一刷新页面为空问题。
-      minify: isDev
-        ? false
-        : {
-            removeAttributeQuotes: true,
-            collapseWhitespace: true,
-            removeComments: true,
-            collapseBooleanAttributes: true,
-            collapseInlineTagWhitespace: true,
-            removeRedundantAttributes: true,
-            removeScriptTypeAttributes: true,
-            removeStyleLinkTypeAttributes: true,
-            minifyCSS: true,
-            minifyJS: true,
-            minifyURLs: true,
-            useShortDoctype: true,
-          },
+      minify: isDev ? false : {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true,
+        removeComments: true,
+        collapseBooleanAttributes: true,
+        collapseInlineTagWhitespace: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        minifyCSS: true,
+        minifyJS: true,
+        minifyURLs: true,
+        useShortDoctype: true,
+      },
     }),
     new CopyPlugin({
       patterns: [

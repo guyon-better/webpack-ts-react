@@ -1,0 +1,20 @@
+.size(@width; @height) {
+  width: @width;
+  height: @height
+}
+
+.square(@size) {
+  .size(@size; @size);
+}
+
+.width(@size) { width: @size; }
+.minWidth(@size) { min-width: @size; }
+.maxWidth(@size) { max-width: @size; }
+
+.height(@size) { height: @size; }
+.minHeight(@size) { min-height: @size; }
+.maxHeight(@size) { max-height: @size; }
+
+.fs(@size) {
+  font-size: @size;
+}
