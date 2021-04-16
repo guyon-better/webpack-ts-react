@@ -18,6 +18,7 @@ module.exports = {
           proposals: true,
         },
       },
+      "react-hot-loader/babel"
     ],
   ],
 };

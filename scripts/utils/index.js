@@ -1,12 +1,11 @@
 const { isDev, isProd } = require('../env');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const getCssLoaders = (importLoaders, props) => [
-  MiniCssExtractPlugin.loader,
+const getCssLoaders = (importLoaders) => [
+  isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
   {
     loader: 'css-loader',
     options: {
-      ...props,
       sourceMap: isDev,
       importLoaders,
     },

@@ -36,9 +36,9 @@ import('../pages/login/Login').then((res)=>{
 		console.log('this is dev mode')
 	}
 
-	if (module && module.hot) {
-		module.hot.accept();
-	}
+	// if (module && module.hot) {
+	// 	module.hot.accept();
+	// }
 	
 	render(<App/>, $root)
 })

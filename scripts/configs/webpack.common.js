@@ -12,7 +12,7 @@ const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 module.exports = {
   mode: isDev ? 'development': 'production',
   entry: {
-    app: path.resolve(PROJECT_PATH, './src/entries/login'),
+    app: path.resolve(PROJECT_PATH, './src/entries/index'),
   },
   output: {
     filename: `js/[name]${isDev ? '' : '.[contenthash:8]'}.js`,
@@ -47,22 +47,22 @@ module.exports = {
         test: /\.css$/,
         use: getCssLoaders(1),
       },
-      {
-        test: /\.module\.less$/,
-        include: path.resolve(PROJECT_PATH, './src'),
-        use: [
-          ...getCssLoaders(2, { esModule: false, modules: true }),
-          {
-            loader: 'less-loader',
-            options: {
-              sourceMap: isDev,
-            },
-          },
-        ],
-      },
+      // {
+      //   test: /\.module\.less$/,
+      //   include: path.resolve(PROJECT_PATH, './src'),
+      //   use: [
+      //     ...getCssLoaders(2),
+      //     {
+      //       loader: 'less-loader',
+      //       options: {
+      //         sourceMap: isDev,
+      //       },
+      //     },
+      //   ],
+      // },
       {
         test: /\.less$/,
-        exclude: /\.module\.less$/,
+        // exclude: /\.module\.less$/,
         include: path.resolve(PROJECT_PATH, './src'),
         use: [
           ...getCssLoaders(2),

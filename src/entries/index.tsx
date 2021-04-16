@@ -1,8 +1,11 @@
-// import 'styles/style.less'
-
+import 'Src/styles/style.less'
 // const es6Promise = require('es6-promise')
 // es6Promise.polyfill()
 // import 'whatwg-fetch'
+
+if (process.env.NODE_ENV !== 'production') {
+	console.log('this is dev mode')
+}
 
 /*
 	动态设置publicPath，在正式环境运行的时候为绝对路径，如果需要手动指定，可以直接设置
@@ -25,13 +28,17 @@ for (let i = scripts.length - 1; i >= 0; i--) {
 import * as React from 'react'
 import {render} from 'react-dom'
 
-// import('../pages/login/Login').then((res)=>{
-// 	const App = res.default
-// 	const $root = document.querySelector('#root')
+import('../pages/home/Home').then((res)=>{
+	const App = res.default
+	const $root = document.querySelector('#root')
 	
-// 	if (process.env.NODE_ENV !== 'production') {
-// 		console.log('this is dev mode')
-// 	}
+	if (process.env.NODE_ENV !== 'production') {
+		console.log('this is dev mode')
+	}
+
+	// if (module && module.hot) {
+	// 	module.hot.accept();
+	// }
 	
-// 	render(<App/>, $root)
-// })
+	render(<App/>, $root)
+})
